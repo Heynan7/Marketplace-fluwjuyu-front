@@ -1,0 +1,471 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================
+   🎨 VARIABLES DE DISEÑO
+   ========================================================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* 🔥 Tipografía */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-playfair);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* =========================================================
+   🧵 BASE TIPOGRÁFICA CULTURAL
+   ========================================================= */
+
+:root {
+  /* top bar h-14 (56px) + bottom nav h-10 (40px) */
+  --header-height: 96px;
+
+  /* =========================================================
+     🌿 PUBLIC BRAND TOKENS
+     ========================================================= */
+  --brand-deep: #0f2e22;
+  --brand-forest: #174735;
+  --brand-forest-strong: #123a2c;
+  --brand-accent: #d4a853;
+  --brand-ink: #f5efe4;
+  --brand-soft: rgba(255, 248, 238, 0.74);
+  --brand-faint: rgba(255, 248, 238, 0.54);
+  --brand-line: rgba(255, 255, 255, 0.11);
+  --brand-line-strong: rgba(255, 255, 255, 0.16);
+  --brand-surface: rgba(255, 255, 255, 0.07);
+  --brand-surface-strong: rgba(255, 255, 255, 0.1);
+  --brand-shadow: 0 18px 45px rgba(5, 18, 14, 0.18);
+
+  /* =========================================================
+     🧵 SELLER DESIGN TOKENS
+     ========================================================= */
+  --seller-accent: #0f3d3a;
+  --seller-accent-strong: #0c312f;
+  --seller-accent-deep: #0f2e22;
+  --seller-ink: #14231c;
+  --seller-text: #425149;
+  --seller-muted: #738178;
+  --seller-soft-text: #8a968f;
+  --seller-faint-text: #99a49e;
+  --seller-line: rgba(15, 46, 34, 0.08);
+  --seller-line-strong: rgba(15, 46, 34, 0.12);
+  --seller-panel: #fcfbf8;
+  --seller-panel-soft: rgba(247, 244, 238, 0.88);
+  --seller-panel-muted: #faf8f3;
+  --seller-white-soft: rgba(255, 255, 255, 0.88);
+  --seller-radius-card: 28px;
+  --seller-radius-xl: 18px;
+  --seller-radius-lg: 16px;
+  --seller-radius-md: 12px;
+  --seller-shadow-soft: 0 18px 45px rgba(15, 46, 34, 0.06);
+  --seller-shadow-panel: 0 8px 24px -22px rgba(15, 46, 34, 0.35);
+  --seller-shadow-press: 0 10px 24px rgba(15, 61, 58, 0.18);
+}
+
+@media (min-width: 768px) {
+  :root {
+    /* top bar h-16 (64px) + bottom nav h-10 (40px) */
+    --header-height: 104px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply antialiased bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    line-height: 1.1;
+  }
+
+  h2 {
+    line-height: 1.15;
+  }
+
+  h3 {
+    line-height: 1.2;
+  }
+}
+
+/* =========================================================
+   🧩 UTILIDADES PERSONALIZADAS
+   ========================================================= */
+
+.grid-cols-auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+/* =========================================================
+   🚀 CARRUSEL
+   ========================================================= */
+
+@layer utilities {
+  .seller-surface-card {
+    border: 1px solid var(--seller-line-strong);
+    border-radius: var(--seller-radius-card);
+    background: white;
+    box-shadow: var(--seller-shadow-soft);
+  }
+
+  .seller-surface-soft {
+    border: 1px solid var(--seller-line-strong);
+    border-radius: var(--seller-radius-card);
+    background: var(--seller-panel-soft);
+    box-shadow: var(--seller-shadow-soft);
+  }
+
+  .seller-panel-subtle {
+    border: 1px solid var(--seller-line);
+    border-radius: calc(var(--seller-radius-card) - 4px);
+    background: var(--seller-panel);
+  }
+
+  .seller-field {
+    border: 1px solid color-mix(in srgb, var(--seller-accent-deep) 12%, transparent);
+    border-radius: var(--seller-radius-md);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 1px 0 rgba(15, 46, 34, 0.04);
+    transition:
+      border-color 150ms ease,
+      box-shadow 150ms ease,
+      background-color 150ms ease;
+  }
+
+  .seller-field:focus,
+  .seller-field:focus-visible {
+    border-color: color-mix(in srgb, var(--seller-accent-deep) 28%, transparent);
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--seller-accent-deep) 10%, transparent),
+      0 1px 0 rgba(15, 46, 34, 0.04);
+    outline: none;
+  }
+
+  .seller-pill {
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+  }
+
+  .seller-option-card {
+    border: 1px solid color-mix(in srgb, var(--seller-accent-deep) 10%, transparent);
+    border-radius: 1rem;
+    background: var(--seller-panel);
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease;
+  }
+
+  .seller-option-card:hover {
+    border-color: color-mix(in srgb, var(--seller-accent-deep) 18%, transparent);
+    background: white;
+  }
+
+  .seller-option-card-active {
+    border-color: color-mix(in srgb, var(--seller-accent) 22%, transparent);
+    background: color-mix(in srgb, var(--seller-accent) 6%, white);
+    box-shadow: 0 10px 24px rgba(15, 61, 58, 0.08);
+  }
+
+  .seller-button-primary {
+    border: 1px solid color-mix(in srgb, var(--seller-accent-deep) 10%, transparent);
+    background: var(--seller-accent);
+    color: white;
+    box-shadow: var(--seller-shadow-press);
+    transition: background-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .seller-button-primary:hover {
+    background: var(--seller-accent-strong);
+  }
+
+  .seller-button-glass {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease,
+      color 150ms ease;
+  }
+
+  .seller-button-glass:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+  }
+
+  .brand-shell {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--brand-forest) 94%, black) 0%, var(--brand-deep) 100%);
+    color: white;
+  }
+
+  .brand-shell-subtle {
+    background: linear-gradient(180deg, rgba(13, 40, 30, 0.98) 0%, rgba(10, 31, 23, 0.96) 100%);
+    color: var(--brand-soft);
+  }
+
+  .brand-panel {
+    border: 1px solid var(--brand-line);
+    border-radius: 1.25rem;
+    background: var(--brand-surface);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(10px);
+  }
+
+  .brand-link-soft {
+    color: var(--brand-soft);
+    transition: color 150ms ease, background-color 150ms ease;
+  }
+
+  .brand-link-soft:hover {
+    color: white;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .fade-up {
+    animation: fadeUp 0.7s ease-out forwards;
+  }
+
+  .fade-delay-1 {
+    animation: fadeUp 0.7s ease-out forwards;
+    animation-delay: 0.1s;
+  }
+
+  .fade-delay-2 {
+    animation: fadeUp 0.7s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+
+  .fade-delay-3 {
+    animation: fadeUp 0.7s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  .carousel-track {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-track > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
+}
+
+/* =========================================================
+   🎨 COLOR SYSTEM
+   ========================================================= */
+
+:root {
+  --radius: 0.625rem;
+
+  /* ── Warm cream background — not pure white, culturally grounded ── */
+  --background: oklch(0.972 0.010 86);       /* #f8f5ef — flow.bg  */
+  --foreground: oklch(0.145 0 0);            /* #171717 — flow.text */
+
+  /* ── Cards sit on white so they lift off the warm page bg ── */
+  --card: oklch(1 0 0);                      /* #ffffff — flow.card */
+  --card-foreground: oklch(0.145 0 0);
+
+  /* ── Borders: warm, hand-crafted feel — not cold gray ── */
+  --border: oklch(0.905 0.007 82);           /* #e5e3dc — flow.border */
+  --input: oklch(0.905 0.007 82);
+  --ring: oklch(0.748 0.163 77);             /* amber focus ring    */
+
+  /* ── Primary: deep forest green — identity color of the navbar ── */
+  --primary: oklch(0.225 0.053 160);         /* #0f2e22              */
+  --primary-foreground: oklch(0.972 0.010 86); /* warm cream on green */
+
+  /* ── Secondary: soft panel background ── */
+  --secondary: oklch(0.946 0.008 82);        /* #f3f1eb — flow.bgSoft */
+  --secondary-foreground: oklch(0.145 0 0);
+
+  /* ── Muted: soft text and backgrounds ── */
+  --muted: oklch(0.946 0.008 82);            /* #f3f1eb */
+  --muted-foreground: oklch(0.521 0.013 250); /* #6b7280 — flow.muted */
+
+  /* ── Accent: amber — warmth and action ── */
+  --accent: oklch(0.748 0.163 77);           /* #f59e0b — flow.accent */
+  --accent-foreground: oklch(0.145 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+}
+
+/* =========================================================
+   🌙 DARK MODE
+   ========================================================= */
+
+.dark {
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.552 0.016 285.938);
+}
+
+/* =========================================================
+   ✨ ANIMACIONES
+   ========================================================= */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   🎬 HERO FLOWJUYU — fj-* custom classes
+   ========================================================= */
+
+/* Grain texture overlay */
+.fj-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 160px;
+}
+
+/* Ken Burns zoom on image */
+@keyframes kenburns {
+  from { transform: scale(1.07); }
+  to   { transform: scale(1); }
+}
+
+.fj-kenburns {
+  animation: kenburns 14s ease-out forwards;
+}
+
+/* Hero image transition states */
+.fj-hero-image {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fj-hero-image.transitioning {
+  opacity: 0;
+  transform: scale(1.03);
+}
+
+.fj-hero-image.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Text reveal on slide change */
+@keyframes textReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fj-text-reveal {
+  animation: textReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Progress line fill */
+@keyframes lineFill {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+.fj-line-fill {
+  animation: lineFill 5.5s linear forwards;
+  width: 0%;
+}
