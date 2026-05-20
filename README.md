@@ -1,69 +1,56 @@
-# Cortes Marketplace Frontend
+# Flowjuyu Backend
 
-## Project structure
+Backend principal de Flowjuyu, un marketplace enfocado en textiles guatemaltecos, vendedores artesanales y comercios que necesitan publicar, administrar y promocionar sus productos en línea.
 
-```plaintext
-components/
-config/
-hooks/
-lib/
-types/
-utils/
-```
+Este backend se encarga de manejar la lógica de negocio, autenticación, roles, productos, perfiles de vendedores, analítica, flujos internos y la comunicación con la base de datos.
 
-## Getting Started
+## Tech Stack
 
-Install dependencies:
+- Node.js
+- Express
+- TypeScript
+- PostgreSQL
+- Sequelize
+- Firebase Auth
+- JWT
+- Supabase
+- Railway
 
-```bash
-npm install
-```
+## Main Features
 
-First, run the development server:
+### Authentication and Sessions
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Firebase Auth integration for user authentication.
+- JWT-based backend session validation.
+- Role-based access control for `buyer` and `seller`.
+- Protected routes for authenticated users.
+- Session validation between frontend and backend.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Seller Management
 
-## Email Lifecycle Hardening
+- Seller profile creation and update.
+- Business information management.
+- Seller onboarding support.
+- Public seller profile data for marketplace pages.
+- Seller-specific product ownership validation.
 
-This repo now keeps email delivery on the server side and exposes two internal endpoints:
+### Product Management
 
-`POST /api/internal/email/send`
+- Product creation, edition, listing and deletion.
+- Product ownership validation by seller.
+- Product image handling support.
+- Product status management.
+- Product metadata for marketplace discovery.
+- Support for seller SKU and internal product codes.
 
-- Requires `Authorization: Bearer ${INTERNAL_EMAIL_API_SECRET}` or `x-internal-email-secret`.
-- Intended for trusted server-to-server use only.
+### Marketplace Taxonomy
 
-`POST /api/internal/email-lifecycle/run`
+- Category, region and fabric selection support.
+- Custom values for categories, regions and fabrics.
+- Storage of custom taxonomy inputs for future analysis.
+- Fields such as:
 
-- Requires `Authorization: Bearer ${EMAIL_CRON_SECRET}` or `x-cron-secret`.
-- Intended for an external cron provider to invoke on a schedule.
-
-Suggested external cron:
-
-```bash
-curl -X POST https://your-app.example.com/api/internal/email-lifecycle/run \
-  -H "Authorization: Bearer $EMAIL_CRON_SECRET"
-```
-
-Backend persistence contract required by lifecycle anti-spam:
-
-- Add `email_welcome_sent_at`
-- Add `email_activation_sent_at`
-- Add `email_week1_sent_at`
-
-These fields belong on `vendedor_perfil` in the backend API/database so lifecycle checks stay consistent across deploys and instances.
-
-## Dependencies
-
-https://ui.shadcn.com/
-https://tailwindcss.com/
-https://dndkit.com/
-next-intl
-zod
-zustand
-useState
+```txt
+categoria_custom
+region_custom
+tela_custom
