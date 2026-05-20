@@ -1,56 +1,93 @@
-# Flowjuyu Backend
+# Cortes Marketplace Frontend
 
-Backend principal de Flowjuyu, un marketplace enfocado en textiles guatemaltecos, vendedores artesanales y comercios que necesitan publicar, administrar y promocionar sus productos en línea.
+Frontend de un marketplace digital para productos textiles y comercios, construido con Next.js, TypeScript y Tailwind CSS.
 
-Este backend se encarga de manejar la lógica de negocio, autenticación, roles, productos, perfiles de vendedores, analítica, flujos internos y la comunicación con la base de datos.
+Este proyecto representa la interfaz principal del marketplace: permite mostrar productos, explorar tiendas, administrar productos desde el panel del vendedor y conectar la experiencia visual con el backend de Flowjuyu.
 
-## Tech Stack
+## Preview
 
-- Node.js
-- Express
-- TypeScript
-- PostgreSQL
-- Sequelize
-- Firebase Auth
-- JWT
-- Supabase
-- Railway
+> Agrega aquí capturas del proyecto para que las personas puedan ver rápidamente cómo luce la plataforma.
+
+### Home / Marketplace
+
+![Home page](./public/screenshots/home.png)
+
+### Product Detail
+
+![Product detail](./public/screenshots/product-detail.png)
+
+## Tools and Technologies Used
+
+Este proyecto fue construido utilizando herramientas modernas para desarrollo frontend, diseño responsivo, validación de datos y manejo de estado.
+
+### Core Technologies
+
+- **Next.js** — Framework principal para construir la aplicación frontend.
+- **React** — Librería usada para crear componentes reutilizables e interfaces interactivas.
+- **TypeScript** — Tipado estático para mejorar la seguridad y mantenimiento del código.
+- **Tailwind CSS** — Sistema de estilos utilizado para construir una interfaz responsive y moderna.
+
+### UI and Design
+
+- **shadcn/ui** — Componentes base para construir una interfaz limpia, reutilizable y consistente.
+- **Tailwind CSS** — Utilizado para layouts, espaciado, responsive design y estilos visuales.
+- **dnd-kit** — Librería utilizada para funcionalidades de drag and drop cuando la interfaz lo requiere.
+
+### State Management and Validation
+
+- **Zustand** — Manejo de estado global de forma simple y ligera.
+- **Zod** — Validación de datos y esquemas para formularios y estructuras del frontend.
+- **React Hooks** — Manejo de lógica reutilizable dentro de componentes.
+
+### Internationalization
+
+- **next-intl** — Preparación para manejo de traducciones e internacionalización.
+
+### Development Tools
+
+- **npm** — Instalación y administración de dependencias.
+- **Git / GitHub** — Control de versiones y publicación del repositorio.
+- **Vercel** — Plataforma recomendada para despliegue del frontend.
 
 ## Main Features
 
-### Authentication and Sessions
+### Marketplace Interface
 
-- Firebase Auth integration for user authentication.
-- JWT-based backend session validation.
-- Role-based access control for `buyer` and `seller`.
-- Protected routes for authenticated users.
-- Session validation between frontend and backend.
+- Página principal para mostrar productos destacados.
+- Diseño visual enfocado en productos textiles.
+- Cards de productos con imagen, nombre, precio y datos relevantes.
+- Estructura preparada para mostrar tiendas, vendedores y productos destacados.
 
-### Seller Management
+### Seller Experience
 
-- Seller profile creation and update.
-- Business information management.
-- Seller onboarding support.
-- Public seller profile data for marketplace pages.
-- Seller-specific product ownership validation.
+- Panel para vendedores.
+- Vista de productos publicados.
+- Flujos para crear y editar productos.
+- Interfaz pensada para que un vendedor pueda administrar su catálogo de forma simple.
 
-### Product Management
+### Product Management UI
 
-- Product creation, edition, listing and deletion.
-- Product ownership validation by seller.
-- Product image handling support.
-- Product status management.
-- Product metadata for marketplace discovery.
-- Support for seller SKU and internal product codes.
+- Formularios para crear y editar productos.
+- Campos visuales para información del producto.
+- Soporte para imágenes de producto.
+- Organización de datos como nombre, precio, descripción, categoría, región, tela y stock.
+- Preparado para integrarse con backend mediante endpoints REST.
 
-### Marketplace Taxonomy
+### Responsive Design
 
-- Category, region and fabric selection support.
-- Custom values for categories, regions and fabrics.
-- Storage of custom taxonomy inputs for future analysis.
-- Fields such as:
+- Diseño adaptable a dispositivos móviles y escritorio.
+- Componentes reutilizables.
+- Layouts construidos con Tailwind CSS.
+- Enfoque mobile-first para mejorar la experiencia en teléfonos.
 
-```txt
-categoria_custom
-region_custom
-tela_custom
+## Frontend Architecture
+
+El proyecto está organizado para mantener una estructura clara y escalable:
+
+```plaintext
+components/
+config/
+hooks/
+lib/
+types/
+utils/
